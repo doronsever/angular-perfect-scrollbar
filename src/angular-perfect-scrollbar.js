@@ -51,6 +51,9 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
       // This is necessary when you don't watch anything with the scrollbar
       $elem.bind('mouseenter', update('mouseenter'));
 
+      // When adding or removing items with ng-repeat update the scrollbar height
+      $elem.bind('DOMSubtreeModified', update)
+
       // Possible future improvement - check the type here and use the appropriate watch for non-arrays
       if ($attr.refreshOnChange) {
         $scope.$watchCollection($attr.refreshOnChange, function() {
